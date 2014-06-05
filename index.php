@@ -30,7 +30,6 @@
 	$result = new stdClass();	
 	$result->item = [["value" => $interval->format('%r%a'), "text" => "days until ".$date]];	
 	echo json_encode($result);
-  });
-  
+  });  
   
   $widgets->run();
