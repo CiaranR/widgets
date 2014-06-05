@@ -5,6 +5,12 @@
   
   $widgets->response->headers->set('Content-Type', 'application/json');
 
+  $widgets->get('/', function () {
+	$result = new stdClass();	
+	$result->item = [["text" => "Hello World"]];
+	echo json_encode($result);
+  });  
+  
   $widgets->get('/text/:text', function ($text) {
 	$result = new stdClass();	
 	$result->item = [["text" => $text]];
