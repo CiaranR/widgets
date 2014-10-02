@@ -3,12 +3,17 @@
   
   $widgets = new \Slim\Slim();
   
-  $widgets->response->headers->set('Content-Type', 'application/json');
+  $format = 'json';
 
   $widgets->get('/', function () {
 	$result = new stdClass();	
 	$result->item = [["text" => "Hello World"]];
 	echo json_encode($result);
+  });
+
+  $widgets->get('/bridge', function () {
+    $format = 'html';
+	require 'bridge.php';
   });  
   
   $widgets->get('/text/:text', function ($text) {
@@ -38,4 +43,9 @@
 	echo json_encode($result);
   });  
   
+
   $widgets->run();
+  
+    if ($format == 'json'){
+    $widgets->response->headers->set('Content-Type', 'application/json');
+  }
